@@ -6,12 +6,36 @@ namespace GradeBook
         public override event GradeAddedDelegate gradeAdded;
         public override void addGrade(double grade)
         {
-            throw new NotImplementedException();
+            if(grade <= 100 && grade >=0) {
+                
+                using(var writer = File.AppendText($"{Name}.txt")){
+                    writer.WriteLine(grade);
+
+                    if(gradeAdded != null){
+                        gradeAdded(this,new EventArgs());
+                    }
+                }
+            }
+            else{
+                throw new ArgumentException($"Invalid {nameof(grade)}");
+            }
+
         }
 
         public override Statistics getStatistics()
         {
-            throw new NotImplementedException();
+            var statistics = new Statistics();
+            
+            using (var reader = File.OpenText($"{Name}.txt")){
+                var line = reader.ReadLine();
+                while(line != null){
+                    var number = double.Parse(line);
+                    statistics.Add(number);
+                    line = reader.ReadLine();
+                }
+            }
+
+            return statistics;
         }
     }
 }

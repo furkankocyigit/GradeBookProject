@@ -25,6 +25,7 @@ namespace GradeBook.Tests{
         var obj = new Statistics();
         var expectedLow = 10;
         var expectedHigh = 80;
+        
         obj.Add(15);
         obj.Add(expectedHigh);
         obj.Add(expectedLow);
@@ -32,6 +33,40 @@ namespace GradeBook.Tests{
         Assert.Equal( 3, obj.count);
         Assert.Equal( expectedLow, obj.Lowest);
         Assert.Equal( expectedHigh, obj.Highest);
+    }
+
+    [Fact]
+    public void AverageTest(){
+        
+        var obj = new Statistics();
+        var expectedLow = 10;
+        var expectedHigh = 80;
+
+        obj.Add(expectedHigh);
+        obj.Add(expectedLow);
+
+        Assert.Equal( 2, obj.count);
+        Assert.Equal( 45, obj.Average);
+    }
+
+    [Fact]
+    public void LetterTest(){
+        
+        var obj = new Statistics();
+        var expectedLow = 10;
+        var expectedHigh = 80;
+
+        obj.Add(expectedHigh);
+        obj.Add(expectedLow);
+
+        Assert.Equal( 2, obj.count);
+        Assert.Equal( 'F', obj.Letter);
+
+        obj.Add(100);
+        obj.Add(100);
+
+        Assert.Equal( 4, obj.count);
+        Assert.Equal( 'C', obj.Letter);
     }
 }
 }
