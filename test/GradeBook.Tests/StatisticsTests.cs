@@ -8,15 +8,30 @@ namespace GradeBook.Tests{
         
         var obj = new Statistics();
 
-        var expectedHigh = double.MaxValue;
-        var expectedLow = double.MinValue;
-        var expectedAvg = 0.0;
+        var expectedHigh = double.MinValue;
+        var expectedLow = double.MaxValue;
+        var expectedSum = 0.0;
         var expectedLetter = 'F';
 
         Assert.Equal( expectedHigh, obj.Highest);
         Assert.Equal( expectedLow, obj.Lowest);
-        Assert.Equal( expectedAvg, obj.Average);
+        Assert.Equal( expectedSum, obj.Sum);
         Assert.Equal( expectedLetter, obj.Letter);
+    }
+
+    [Fact]
+    public void AddNumberToStatisticsTests(){
+        
+        var obj = new Statistics();
+        var expectedLow = 10;
+        var expectedHigh = 80;
+        obj.Add(15);
+        obj.Add(expectedHigh);
+        obj.Add(expectedLow);
+
+        Assert.Equal( 3, obj.count);
+        Assert.Equal( expectedLow, obj.Lowest);
+        Assert.Equal( expectedHigh, obj.Highest);
     }
 }
 }
