@@ -10,6 +10,9 @@ namespace  GradeBook
             
             IBook fileBook = new FileBook("Furkan's File Book");
             IBook memoryBook = new InMemoryBook("Furkan's In Memory Book");
+            
+            fileBook.gradeAdded += OnGradeAdded;
+            memoryBook.gradeAdded += OnGradeAdded;
 
             var done = false;
 
@@ -72,7 +75,6 @@ namespace  GradeBook
                         {
                             var grade = double.Parse(gradeInput);
                             book.addGrade(grade);
-                            Console.WriteLine("added succesfully!");
                         }
                         catch (ArgumentException ex)
                         {
@@ -91,6 +93,10 @@ namespace  GradeBook
             }
 
             return done;
+        }
+
+        static void OnGradeAdded(object sender, EventArgs e){
+            Console.WriteLine("A Grade was added");
         }
     }
     
