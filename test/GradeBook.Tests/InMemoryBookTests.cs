@@ -33,9 +33,9 @@ namespace GradeBook.Tests
             var countNumber = memoryBook.getGrades().Count;
             var statistics = memoryBook.getStatistics();
 
-            Assert.Equal( statistics.Lowest, 20);
-            Assert.Equal( statistics.Highest, 90);
-            Assert.Equal( statistics.count, countNumber);
+            Assert.Equal( 20, statistics.Lowest );
+            Assert.Equal( 90, statistics.Highest );
+            Assert.Equal( countNumber,statistics.count);
 
         }
 
